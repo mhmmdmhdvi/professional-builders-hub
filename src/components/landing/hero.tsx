@@ -93,7 +93,7 @@ export function Hero() {
               </div>
 
               <div
-                className="reveal absolute -bottom-10 left-4 hidden w-40 overflow-hidden border-4 border-background bg-surface shadow-lift sm:block lg:-left-10 lg:w-52"
+                className="reveal absolute -bottom-10 left-4 hidden w-40 overflow-hidden border-4 border-background bg-surface shadow-lift sm:block lg:left-0 lg:w-52"
                 data-reveal
                 style={{ transitionDelay: "200ms" }}
               >
