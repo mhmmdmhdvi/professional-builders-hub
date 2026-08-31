@@ -1,24 +1,48 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
+import { SiteHeader } from "@/components/landing/site-header";
+import { Hero } from "@/components/landing/hero";
+import { Benefits } from "@/components/landing/benefits";
+import { Events } from "@/components/landing/events";
+import { JoinCta } from "@/components/landing/join-cta";
+import { About } from "@/components/landing/about";
+import { Contact } from "@/components/landing/contact";
+import { SiteFooter } from "@/components/landing/site-footer";
+import { useReveal } from "@/hooks/use-reveal";
+
+const TITLE = "باشگاه مشتریان چسب ساختمانی | جامعه حرفه‌ای‌های صنعت ساختمان";
+const DESCRIPTION =
+  "باشگاه مشتریان؛ جامعه‌ای تخصصی برای پیمانکاران، نصابان اسلب و سرامیک و فعالان صنعت ساختمان با رویدادها، آموزش‌ها و مزایای ویژه.";
+
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title: TITLE },
+      { name: "description", content: DESCRIPTION },
+      { property: "og:title", content: TITLE },
+      { property: "og:description", content: DESCRIPTION },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+  }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
 function Index() {
+  useReveal();
+
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
+    <div className="min-h-screen bg-background">
+      <SiteHeader />
+      <main>
+        <Hero />
+        <Benefits />
+        <Events />
+        <JoinCta />
+        <About />
+        <Contact />
+      </main>
+      <SiteFooter />
     </div>
   );
 }
